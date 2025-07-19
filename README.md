@@ -1,30 +1,112 @@
-# Laravel + Livewire Starter Kit
+# 🛒 Laravel E-Commerce Website
 
-## Introduction
+A full-featured **E-Commerce website** built with Laravel, inspired by furniture websites like **Nilkamal**. This project was developed as part of an internship assignment, showcasing capabilities like user authentication, product management, shopping cart, and order handling.
 
-Our Laravel + [Livewire](https://livewire.laravel.com) starter kit provides a robust, modern starting point for building Laravel applications with a Livewire frontend.
+---
 
-Livewire is a powerful way of building dynamic, reactive, frontend UIs using just PHP. It's a great fit for teams that primarily use Blade templates and are looking for a simpler alternative to JavaScript-driven SPA frameworks like React and Vue.
+## 🚀 Features
 
-This Livewire starter kit utilizes Livewire 3, Laravel Volt (optionally), TypeScript, Tailwind, and the [Flux UI](https://fluxui.dev) component library.
+- 🔐 User registration and login system
+- 🛍️ Browse products (title, price, image, details)
+- 🛒 Add to cart, update quantity, remove items
+- ✅ Checkout and place order
+- 📦 Admin dashboard with:
+  - Product management (CRUD)
+  - View all customer orders
+- 🌐 Built using Laravel Blade templates
+- 🔄 Session-based cart handling
+- 🧾 Order storage with total calculations
 
-If you are looking for the alternate configurations of this starter kit, they can be found in the following branches:
+---
 
-- [components](https://github.com/laravel/livewire-starter-kit/tree/components) - if Volt is not selected
-- [workos](https://github.com/laravel/livewire-starter-kit/tree/workos) - if WorkOS is selected for authentication
+## 🧰 Tech Stack
 
-## Official Documentation
+| Tech         | Use Case                          |
+|--------------|-----------------------------------|
+| Laravel      | PHP Web Framework                 |
+| MySQL        | Database                          |
+| Blade        | Laravel Templating Engine         |
+| Composer     | Dependency Management             |
+| Breeze       | Simple Auth Scaffolding           |
+| HTML/CSS     | Frontend UI                       |
+| VS Code      | Development Environment           |
+| Git/GitHub   | Version Control                   |
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+---
 
-## Contributing
+## 🛠️ Installation
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+# Clone the repository
+git clone https://github.com/your-username/ecommerce-laravel.git
+cd ecommerce-laravel
 
-## Code of Conduct
+# Install dependencies
+composer install
+npm install && npm run dev
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Create environment file
+cp .env.example .env
 
-## License
+# Generate application key
+php artisan key:generate
 
-The Laravel + Livewire starter kit is open-sourced software licensed under the MIT license.
+# Configure database in .env
+DB_DATABASE=ecommerce_db
+DB_USERNAME=root
+DB_PASSWORD=your_password
+
+# Run migrations
+php artisan migrate
+
+# Start the server
+php artisan serve
+
+🧪 Sample Admin Account
+To make a user admin:
+
+bash
+Copy
+Edit
+php artisan tinker
+
+>>> $user = App\Models\User::find(1);
+>>> $user->is_admin = true;
+>>> $user->save();
+
+
+📂 Project Structure
+mathematica
+Copy
+Edit
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── ProductController.php
+│   │   │   ├── CartController.php
+│   │   │   └── OrderController.php
+│   ├── Models/
+│       ├── Product.php
+│       ├── Order.php
+├── resources/
+│   ├── views/
+│   │   ├── home.blade.php
+│   │   ├── cart/
+│   │   ├── admin/
+│   │   └── products/
+├── routes/
+│   └── web.php
+
+
+
+🤝 Contributing
+Fork the project
+
+Create a feature branch: git checkout -b feature/your-feature
+
+Commit changes: git commit -am "Add your feature"
+
+Push to branch: git push origin feature/your-feature
+
+Open a Pull Request
+
