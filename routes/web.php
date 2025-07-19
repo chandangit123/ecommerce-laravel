@@ -1,22 +1,33 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+use App\Http\Controllers\OrderController;
+Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::post('/checkout', [OrderController::class, 'placeOrder'])->name('place.order');
+
+
+Route::resource('products', ProductController::class)->middleware('auth');
+
+Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
 
-    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')->name('settings.password');
-    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+Route::get('/', function () {
+    $products = App\Models\Product::all();
+    return view('home', compact('products'));
 });
 
 require __DIR__.'/auth.php';

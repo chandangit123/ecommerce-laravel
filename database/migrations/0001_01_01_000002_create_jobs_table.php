@@ -43,6 +43,9 @@ return new class extends Migration
             $table->longText('exception');
             $table->timestamp('failed_at')->useCurrent();
         });
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('is_admin')->default(false);
+        });
     }
 
     /**
